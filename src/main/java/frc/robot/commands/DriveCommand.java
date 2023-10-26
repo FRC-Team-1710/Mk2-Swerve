@@ -3,6 +3,8 @@ package frc.robot.commands;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.Constants;
+
 import java.util.function.DoubleSupplier;
 
 import frc.utilities.math.Deadband;
@@ -36,19 +38,19 @@ public class DriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double forward = m_translationYSupplier.getAsDouble() * .5;
+        double forward = m_translationYSupplier.getAsDouble() * Constants.DRIVETRAIN_MAX_SPEED;
         // Filter out values less than 0.1
         forward = Deadband.deadband(forward, 0.1);
         // Square the forward stick but keep the sign
         forward = Math.copySign(Math.pow(forward, 2.0), forward);
 
-        double strafe = m_translationXSupplier.getAsDouble() * .5;
+        double strafe = m_translationXSupplier.getAsDouble() * Constants.DRIVETRAIN_MAX_SPEED;
         // Filter out values less than 0.1
         strafe = Deadband.deadband(strafe, 0.1);
         // Square the strafe stick but keep the sign
         strafe = Math.copySign(Math.pow(strafe, 2.0), strafe);
 
-        double rotation = m_rotationSupplier.getAsDouble() * .5;
+        double rotation = m_rotationSupplier.getAsDouble() * Constants.DRIVETRAIN_MAX_SPEED;
         // Filter out values less than 0.15
         rotation = Deadband.deadband(rotation, 0.15);
         // Square the rotation stick but keep the sign

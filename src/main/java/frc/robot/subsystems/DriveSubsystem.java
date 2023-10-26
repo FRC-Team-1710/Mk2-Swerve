@@ -33,9 +33,9 @@ public class DriveSubsystem extends SubsystemBase {
     private static final double TRACKWIDTH = Units.inchesToMeters(23);
     private static final double WHEELBASE = Units.inchesToMeters(23);
 
-    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(216 - 90);
-    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(337 - 90);
-    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(330 - 90);
+    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(220 - 90);
+    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(338 - 90);
+    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(329 - 90);
     private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(114 - 90);
 
     private CANSparkMax backLeftAngle = new CANSparkMax(Constants.DRIVETRAIN_BACK_LEFT_ANGLE_MOTOR,

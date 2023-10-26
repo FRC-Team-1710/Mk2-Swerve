@@ -14,15 +14,9 @@ package frc.robot;
  */
 public final class Constants {
 
-//ARM CONSTANTS
-
-
-
-//GRABBER CONSTANTS
-
-
-
 //DRIVE CONSTANTS
+    public static final double DRIVETRAIN_MAX_SPEED = 0.75;
+
     public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_MOTOR = 2; // CAN
     public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_ENCODER = 0; // Analog
     public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR = 3; // CAN
