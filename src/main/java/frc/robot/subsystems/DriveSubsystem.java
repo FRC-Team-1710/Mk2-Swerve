@@ -240,8 +240,10 @@ public class DriveSubsystem extends SubsystemBase {
                 SmartDashboard.putNumber("Front Right", Math.toDegrees(frontRightModule.getCurrentAngle()));
                 SmartDashboard.putNumber("Back Left", Math.toDegrees(backLeftModule.getCurrentAngle()));
                 SmartDashboard.putNumber("Back Right", Math.toDegrees(backRightModule.getCurrentAngle()));
+
                 // Correct pose estimate with vision measurements
                 var visionEst = vision.getEstimatedGlobalPose();
+                poseEstimator.update(getGyroYaw(), getModulePositions());
                 visionEst.ifPresent(
                                 est -> {
                                         var estPose = est.estimatedPose.toPose2d();
