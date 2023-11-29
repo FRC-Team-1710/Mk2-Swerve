@@ -1,5 +1,7 @@
 package frc.utilities.drivers;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.utilities.math.Rotation2;
 import frc.utilities.math.Vector2;
 
@@ -79,6 +81,10 @@ public abstract class SwerveModule {
      */
     public final Vector2 getModulePosition() {
         return modulePosition;
+    }
+
+    public SwerveModulePosition getPosition() {
+        return new SwerveModulePosition(getCurrentDistance(), Rotation2d.fromDegrees(getCurrentAngle()));
     }
 
     /**

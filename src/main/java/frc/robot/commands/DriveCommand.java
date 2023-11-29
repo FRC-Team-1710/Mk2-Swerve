@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.Constants;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 import frc.utilities.math.Deadband;
@@ -18,15 +19,18 @@ public class DriveCommand extends CommandBase {
     private final DoubleSupplier m_translationXSupplier;
     private final DoubleSupplier m_translationYSupplier;
     private final DoubleSupplier m_rotationSupplier;
+    private final BooleanSupplier m_bButton;
 
     public DriveCommand(DriveSubsystem drivetrainSubsystem,
             DoubleSupplier translationXSupplier,
             DoubleSupplier translationYSupplier,
-            DoubleSupplier rotationSupplier) {
+            DoubleSupplier rotationSupplier,
+            BooleanSupplier bButton) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.m_translationXSupplier = translationXSupplier;
         this.m_translationYSupplier = translationYSupplier;
         this.m_rotationSupplier = rotationSupplier;
+        this.m_bButton = bButton;
         addRequirements(drivetrainSubsystem);
     }
 
@@ -55,6 +59,10 @@ public class DriveCommand extends CommandBase {
         rotation = Deadband.deadband(rotation, 0.15);
         // Square the rotation stick but keep the sign
         rotation = Math.copySign(Math.pow(rotation, 2.0), rotation);
+
+        if(m_bButton.getAsBoolean()) {
+            m_drivetrainSubsystem.applyRandomOffset(m_drivetrainSubsystem);
+        }
 
         m_drivetrainSubsystem.drive(new Translation2d(forward, strafe), rotation, true);
     }
